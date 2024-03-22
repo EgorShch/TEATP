@@ -1,41 +1,31 @@
 package com.example.TEATP.services;
 
 import com.example.TEATP.models.Place;
+import com.example.TEATP.repositories.PlaceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PlaceService {
-    private List<Place> places = new ArrayList<Place>();
-    private int ID = 0;
-
-    public PlaceService() {
-        for (int i = 1; i <= 2; i++){
-            for (int j = 1; j <= 3; j++){
-                places.add(new Place(++ID, 1, i, j));
-            }
-        }
-        for (int i = 1; i <= 6; i++){
-            places.add(new Place(++ID, 2, 1, i));
-        }
-    }
+    private final PlaceRepository placeRepository;
 
     public List<Place> listPlaces(){
-        return places;
+        return placeRepository.findAll();
     }
 
-    public Place getPlace(int id){
-        return places.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+    public Place getPlace(long id){
+        return placeRepository.findById(id).orElse(null);
     }
 
     public List<Place> placesByHall(int hallId){
-        return places.stream().filter(p -> p.getHallId() == hallId).toList();
+        return placeRepository.findAll().stream().filter(p -> p.getHallId() == hallId).toList();
     }
 
     public void savePlace(Place place){
-        place.setId(++ID);
-        places.add(place);
+        placeRepository.save(place);
     }
 }
