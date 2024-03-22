@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сеанс</title>
+</head>
+<body>
+<a th:href="@{/}"><h1>Афиша</h1></a>
+<h4>Подробная информация о сеансе</h4>
+ID: <b th:text="${seance.id}"></b><br>
+Фильм: <b th:text="${film.name}"></b><br>
+Дата: <b th:text="${seance.date}"></b><br>
+Время: <b th:text="${seance.time}"></b><br>
+Стоимость: <b th:text="${seance.cost}"></b><br>
+Номер зала: <b th:text="${seance.hallId}"></b><br>
+<form th:method="GET" th:action="@{/hall/{id}(id=${seance.hallId})}">
+    <input type="submit" value="Купить билет">
+</form>
+</body>
+</html>

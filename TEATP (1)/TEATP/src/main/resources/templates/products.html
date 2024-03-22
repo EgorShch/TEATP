@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сеансы</title>
+</head>
+<body>
+    <h1>Сеансы</h1>
+    <a th:href="@{/films}" style="float: right; font-size: 20px;" >Популярные фильмы</a>
+    <br>
+    <hr>
+    <ul>
+        <li th:each="seance : ${sessions}">
+            Фильм: <span th:text="${films.getFilm(seance.filmId).name}"></span><br>
+            Дата: <span th:text="${seance.date}"></span><br>
+            Время: <span th:text="${seance.time}"></span><br>
+            Цена: <span th:text="${seance.cost}"></span> руб.
+            <a th:href="@{/sessions/{id}(id=${seance.id})}">Подробнее</a>
+            <br><br>
+        </li>
+    </ul>
+</body>
+</html>

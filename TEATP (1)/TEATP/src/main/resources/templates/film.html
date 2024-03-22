@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Фильм</title>
+</head>
+<body>
+<a th:href="@{/}"><h1>Афиша</h1></a>
+<h2>Подробная информация о фильме</h2>
+ID: <b th:text="${film.id}"></b><br>
+Фильм: <b th:text="${film.name}"></b><br>
+Жанр: <b th:text="${film.genre}"></b><br>
+Описание: <b th:text="${film.description}"></b><br>
+Продолжительность: <b th:text="${film.duration}"></b><br>
+Ограничение по возрасту: <b th:text="${film.ageRating}"></b><br>
+</body>
+</html>
